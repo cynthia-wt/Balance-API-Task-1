@@ -1,5 +1,5 @@
 import chai from 'chai';
-import { app, calculateTotal } from './index.js';
+import { app, calculateTotal } from '../main/index.js';
 import httpChai from 'chai-http';
 
 const { assert } = chai;
@@ -37,25 +37,25 @@ describe('/GET user total balance', () => {
           assert.equal(res.status, 200);
           assert.notEqual(res.body, null);
           assert.equal(typeof (res.body), 'object');
-        }); 
+        });
     }
 
-    done(); 
+    done();
   });
 })
 
 // E2ETest - Check if we receive an error message if the user id is invalid 
 describe('/GET user total balance', () => {
   it('it should return error message', (done) => {
-      chai.request(app)
-        .get(`/users/10200/total-balance`)
-        .end((err, res) => {
-          assert.equal(res.status, 404);
-          assert.notEqual(res.body, null);
-          assert.equal(res.body["message"], `Invalid input - User id 10200 is not found`);
-        }); 
-        done();  
-    });
+    chai.request(app)
+      .get(`/users/10200/total-balance`)
+      .end((err, res) => {
+        assert.equal(res.status, 404);
+        assert.notEqual(res.body, null);
+        assert.equal(res.body["message"], `Invalid input - User id 10200 is not found`);
+      });
+    done();
+  });
 })
 
 // UnitTest - Check that the calculation of the total balance is correct when user has balance under both markets i.e. both ETHUSD and BTCUSD

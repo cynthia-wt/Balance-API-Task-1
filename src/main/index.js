@@ -91,7 +91,7 @@ app.get('/users/:id/total-balance', async (req, res, next) => {
       const btcPrice = (await fetchTickerData("btc")).last;
       const ethPrice = (await fetchTickerData("eth")).last;
       const totalBalance = await (calculateTotal(userBalances[userId], btcPrice, ethPrice));
-      res.status(200).send({ [userId]: `${roundToTwo(totalBalance)}USD` });
+      res.status(200).send({ [userId]: `${roundToTwo(totalBalance)} USD` });
     }
   } catch (error) {
     console.error(`Failed to retrieve total balance for user ${userId}`);
