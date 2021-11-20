@@ -1,5 +1,6 @@
 import express from 'express';
 import fetch from 'node-fetch';
+import cors from 'cors';
 
 const app = express();
 export { app };
@@ -79,7 +80,7 @@ export async function calculateTotal(assetBalances, btcPrice, ethPrice) {
   return totalBalance;
 }
 
-app.get('/users/:id/total-balance', async (req, res, next) => {
+app.get('/users/:id/total-balance', cors(), async (req, res) => {
   const userId = req.params.id;
 
   try {
@@ -99,6 +100,18 @@ app.get('/users/:id/total-balance', async (req, res, next) => {
   }
 }
 )
+
+app.get('/users/:id/balances', cors(), (req, res) => {
+  const userId = req.params.id;
+
+  if (!userBalances[userId]) {
+    console.error(`Invalid input : User id ${userId} is not found`);
+    res.status(404).send({ "message": `Invalid input - User id ${userId} is not found` });
+  
+  } else {
+    res.status(200).send(userBalances[userId]);
+  } 
+});
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
