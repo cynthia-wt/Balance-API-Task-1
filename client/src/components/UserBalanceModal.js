@@ -10,13 +10,13 @@ function UserBalanceModal(props) {
             {...props}
         >
             <Modal.Header>
-                <Modal.Title>Balances for User ID {props.userId}</Modal.Title>
+                <Modal.Title>Balances for User ID {props.userid}</Modal.Title>
             </Modal.Header>
 
             <Modal.Body>
-                <p>BTC Balance - {props.btcBalance}</p>
-                <p>ETH Balance - {props.ethBalance}</p>
-                <p>Total Balance in USD - {props.totalBalance}</p>
+                <p>BTC Balance - {props.btcbalance}</p>
+                <p>ETH Balance - {props.ethbalance}</p>
+                <p>Total Balance in USD - {props.totalbalance}</p>
             </Modal.Body>
 
             <Modal.Footer>

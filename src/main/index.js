@@ -57,6 +57,9 @@ function roundToTwo(num) {
 }
 
 export async function calculateTotal(assetBalances, btcPrice, ethPrice) {
+  console.log("btcPrice : " + btcPrice);
+  console.log("ethPrice : " + ethPrice);
+
   let totalBalance = 0;
   let lastPrice;
 

@@ -69,10 +69,10 @@ function App() {
         <UserBalanceModal
           show={balanceModalShow}
           onHide={handleClose}
-          userId={userId.current.value}
-          totalBalance={totalBalance}
-          btcBalance={btcBalance}
-          ethBalance={ethBalance}
+          userid={userId.current.value}
+          totalbalance={totalBalance}
+          btcbalance={btcBalance}
+          ethbalance={ethBalance}
         />
         <ErrorMessageModal
           show={errorModalShow}
