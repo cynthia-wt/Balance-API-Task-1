@@ -4,6 +4,7 @@ import { Form, FormControl } from "react-bootstrap";
 import React, { useState, useRef } from "react";
 import UserBalanceModal from './components/UserBalanceModal';
 import ErrorMessageModal from './components/ErrorMessageModal';
+import fetchAPI from './helpers/FetchAPI';
 
 function App() {
   const userId = useRef("");
@@ -28,40 +29,23 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let totalBalanceResponse = await fetch(
-      `http://localhost:8080/users/${userId.current.value}/total-balance`
-    )
-      .then((res) => {
-        if (res.status === 200) return res.json();
-        else return ;
-      })
-      .catch((err) => console.log(err));
-
-    let userBalances = await fetch(
-      `http://localhost:8080/users/${userId.current.value}/balances`
-    )
-      .then((res) => {
-        if (res.status === 200) return res.json()
-        else return ;
-      })
-      .catch((err) => console.log(err));
+    let totalBalanceResponse = await fetchAPI(`${userId.current.value}/total-balance`);
+    let userBalances = await fetchAPI(`${userId.current.value}/balances`);
 
     if (totalBalanceResponse === undefined || userBalances === undefined) {
       setErrorModalShow(true);
-    
+
     } else {
-      setTotalBalance(totalBalanceResponse[userId.current.value]);  
+      setTotalBalance(totalBalanceResponse[userId.current.value]);
 
       if (userBalances["BTC"] !== undefined) {
         setBtcBalance(userBalances["BTC"]);
-      } 
-  
+      }
       if (userBalances["ETH"] !== undefined) {
         setEthBalance(userBalances["ETH"]);
       }
-
       setBalanceModalShow(true);
-    }  
+    }
   };
 
   return (
@@ -72,17 +56,15 @@ function App() {
           <p>
             Enter user id here to calculate total balance:
           </p>
-          <>
-            <Form onSubmit={handleSubmit}>
-              <FormControl
-                type="text"
-                name="search"
-                className="mr-sm-2"
-                style={{ marginBottom: 10, marginRight: 10, width: 500 }}
-                ref={userId}
-              />
-            </Form>
-          </>
+          <Form onSubmit={handleSubmit}>
+            <FormControl
+              type="text"
+              name="search"
+              className="mr-sm-2"
+              style={{ marginBottom: 10, marginRight: 10, width: 500 }}
+              ref={userId}
+            />
+          </Form>
         </header>
         <UserBalanceModal
           show={balanceModalShow}
