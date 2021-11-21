@@ -52,14 +52,14 @@ const userBalances = {
 __1. (Optional) If you didn’t have time to complete your intended design, what else would you have done?__
 > If there are more time, I would choose to enhance my design by allowing the viewing of all the data entries on the web UI, and enable viewing of the tabulated total balance in a modal upon clicking on the data entry.
 
-On the client side, this will involve the addition of a table to the home page and an onclick function on the row to show the modal with the tabulated total balance of the entry. 
+>On the client side, this will involve the addition of a table to the home page and an onclick function on the row to show the modal with the tabulated total balance of the entry. 
 
-On the server side, this will involve the addition of an endpoint that returns all the data entries in the database.
+>On the server side, this will involve the addition of an endpoint that returns all the data entries in the database.
 
 __2. Which took the most time? What did you find most difficult?__
 > Personally, I would say that the client-side portion and the linking of the client-side with the server-side took me more time. This is because currently, I am working on the backend in my current company, hence I took some time to revise back on React as well as read up on how to link the client-side and server-side, and have them running concurrently. 
 
-For the server-side portion, I would say that the tests took me more time than the rest as I took some time to read up on the mocha and chai testing, since I have not used this testing framework before. 
+>For the server-side portion, I would say that the tests took me more time than the rest as I took some time to read up on the mocha and chai testing, since I have not used this testing framework before. 
 
 __3. If we wanted the balance to update on the frontend more often (10 times per second), how would you improve the current system to handle this?__
 > In the case by which we would want the balance to be updated on the frontend more often, I would improve the current system to use a web-socket instead of HTTP calls, since it better supports high frequency messaging.
