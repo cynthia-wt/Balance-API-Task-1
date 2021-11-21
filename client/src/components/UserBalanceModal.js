@@ -10,7 +10,7 @@ function UserBalanceModal(props) {
             {...props}
         >
             <Modal.Header>
-                <Modal.Title>Balances for User Id {props.userId}</Modal.Title>
+                <Modal.Title>Balances for User ID {props.userId}</Modal.Title>
             </Modal.Header>
 
             <Modal.Body>
@@ -20,7 +20,7 @@ function UserBalanceModal(props) {
             </Modal.Body>
 
             <Modal.Footer>
-                <Button variant="secondary" onClick={props.onHide}>Close</Button>
+                <Button variant="danger" onClick={props.onHide}>Close</Button>
             </Modal.Footer>
         </Modal>
     )

@@ -54,7 +54,7 @@ function App() {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
-            Enter user id here to calculate total balance:
+            Enter User ID here to calculate total balance:
           </p>
           <Form onSubmit={handleSubmit}>
             <FormControl

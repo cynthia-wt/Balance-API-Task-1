@@ -18,7 +18,7 @@ function ErrorMessageModal(props) {
             </Modal.Body>
 
             <Modal.Footer>
-                <Button variant="secondary" onClick={props.onHide}>Close</Button>
+                <Button variant="danger" onClick={props.onHide}>Close</Button>
             </Modal.Footer>
         </Modal>
     )
