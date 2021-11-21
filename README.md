@@ -50,13 +50,19 @@ const userBalances = {
 
 ## Questions
 __1. (Optional) If you didn’t have time to complete your intended design, what else would you have done?__
-> ANSWER
+> If there are more time, I would choose to enhance my design by allowing the viewing of all the data entries on the web UI, and enable viewing of the tabulated total balance in a popup modal upon clicking on the data entry.
+
+On the client side, this will involve the addition of a table to the home page and an onclick function on the row to show the modal with the tabulated total balance. 
+
+On the server side, this will involve the addition of an endpoint that returns all the data entries in the database.
 
 __2. Which took the most time? What did you find most difficult?__
-> ANSWER
+> Personally, I would say that the client-side portion and the linking of the client-side with the server-side took me more time. Currently, I am working on the backend in my current company, hence I took some time to revise back on React as well as read up on how to link the client-side and server-side, and have them run concurrently. 
+
+For the server-side portion, I would say that the tests took me more time than the rest as I took some time to read up on the mocha and chai testing, as I have not used this testing framework before. 
 
 __3. If we wanted the balance to update on the frontend more often (10 times per second), how would you improve the current system to handle this?__
-> ANSWER
+> In the case by which we would want the balance to be updated on the frontend more often, I would improve the current system to use a web-socket instead of HTTP calls, since it better supports high frequency messaging.
 
 __4. How did you find the test overall? If you have any suggestions on how we can improve the test, we'd love to hear them!__
-> ANSWER
+> I feel that the test is fun and interesting to do on overall. I find the test clear and concise in terms of the instructions. If I were to give one suggestion, perhaps it will be to add in the client-side requirement to the test as well since this is a full stack role. 
