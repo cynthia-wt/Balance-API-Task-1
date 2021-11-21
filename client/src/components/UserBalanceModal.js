@@ -1,5 +1,5 @@
-import { useState, React } from "react";
-import { Modal, Button, Table } from "react-bootstrap";
+import { React } from "react";
+import { Modal, Button } from "react-bootstrap";
 
 function UserBalanceModal(props) {
 

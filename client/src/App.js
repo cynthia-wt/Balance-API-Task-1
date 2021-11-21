@@ -2,7 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import { Form, FormControl } from "react-bootstrap";
 import React, { useState, useRef } from "react";
-import UserBalanceModal from './UserBalanceModal';
+import UserBalanceModal from './components/UserBalanceModal';
+import ErrorMessageModal from './components/ErrorMessageModal';
 
 function App() {
   const userId = useRef("");
@@ -10,6 +11,7 @@ function App() {
   const [totalBalance, setTotalBalance] = useState(0);
   const [btcBalance, setBtcBalance] = useState(0);
   const [ethBalance, setEthBalance] = useState(0);
+  const [errorModalShow, setErrorModalShow] = useState(false);
 
   const resetValues = async (e) => {
     setTotalBalance(0);
@@ -25,29 +27,41 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setBalanceModalShow(true);
 
     let totalBalanceResponse = await fetch(
       `http://localhost:8080/users/${userId.current.value}/total-balance`
     )
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 200) return res.json();
+        else return ;
+      })
       .catch((err) => console.log(err));
-    
-    setTotalBalance(totalBalanceResponse[userId.current.value]);  
 
     let userBalances = await fetch(
       `http://localhost:8080/users/${userId.current.value}/balances`
     )
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 200) return res.json()
+        else return ;
+      })
       .catch((err) => console.log(err));
-    
-    if (userBalances["BTC"] != undefined) {
-      setBtcBalance(userBalances["BTC"]);
-    } 
 
-    if (userBalances["ETH"] != undefined) {
-      setEthBalance(userBalances["ETH"]);
-    }
+    if (totalBalanceResponse === undefined || userBalances === undefined) {
+      setErrorModalShow(true);
+    
+    } else {
+      setTotalBalance(totalBalanceResponse[userId.current.value]);  
+
+      if (userBalances["BTC"] !== undefined) {
+        setBtcBalance(userBalances["BTC"]);
+      } 
+  
+      if (userBalances["ETH"] !== undefined) {
+        setEthBalance(userBalances["ETH"]);
+      }
+
+      setBalanceModalShow(true);
+    }  
   };
 
   return (
@@ -68,7 +82,6 @@ function App() {
                 ref={userId}
               />
             </Form>
-
           </>
         </header>
         <UserBalanceModal
@@ -78,6 +91,10 @@ function App() {
           totalBalance={totalBalance}
           btcBalance={btcBalance}
           ethBalance={ethBalance}
+        />
+        <ErrorMessageModal
+          show={errorModalShow}
+          onHide={() => setErrorModalShow(false)}
         />
       </div>
     </div>
