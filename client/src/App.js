@@ -14,7 +14,7 @@ function App() {
   const [ethBalance, setEthBalance] = useState(0);
   const [errorModalShow, setErrorModalShow] = useState(false);
 
-  const resetValues = async (e) => {
+  const resetValues = async () => {
     setTotalBalance(0);
     setBtcBalance(0);
     setEthBalance(0);
@@ -50,7 +50,6 @@ function App() {
 
   return (
     <div className="App">
-      <div>
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
@@ -78,7 +77,6 @@ function App() {
           show={errorModalShow}
           onHide={() => setErrorModalShow(false)}
         />
-      </div>
     </div>
   );
 }

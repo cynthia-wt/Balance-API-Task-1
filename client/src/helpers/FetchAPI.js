@@ -3,8 +3,10 @@ const fetchAPI = async (requestMapping) => {
         `http://localhost:8080/users/${requestMapping}`
       )
         .then((res) => {
-          if (res.status === 200) return res.json();
-          else return;
+          if (res.status === 200) {
+            return res.json();
+          
+          } else return;
         })
         .catch((err) => console.log(err));
 

@@ -57,9 +57,6 @@ function roundToTwo(num) {
 }
 
 export async function calculateTotal(assetBalances, btcPrice, ethPrice) {
-  console.log("btcPrice : " + btcPrice);
-  console.log("ethPrice : " + ethPrice);
-
   let totalBalance = 0;
   let lastPrice;
 
@@ -112,10 +109,10 @@ app.get('/users/:id/balances', cors(), (req, res) => {
   if (!userBalances[userId]) {
     console.error(`Invalid input : User id ${userId} is not found`);
     res.status(404).send({ "message": `Invalid input - User id ${userId} is not found` });
-  
+
   } else {
     res.status(200).send(userBalances[userId]);
-  } 
+  }
 });
 
 app.get('/', (req, res) => {
