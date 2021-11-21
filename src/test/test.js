@@ -44,11 +44,43 @@ describe('/GET user total balance', () => {
   });
 })
 
+// E2ETest - Check if we are able to retrieve the balances of the user properly
+describe('/GET user balances', () => {
+  it('it should GET balances of user', (done) => {
+
+    for (const userBalance in testUserBalances) {
+      chai.request(app)
+        .get(`/users/${userBalance}/balances`)
+        .end((err, res) => {
+          assert.equal(res.status, 200);
+          assert.notEqual(res.body, null);
+          assert.equal(typeof (res.body), 'object');
+        });
+    }
+
+    done();
+  });
+})
+
 // E2ETest - Check if we receive an error message if the user id is invalid 
 describe('/GET user total balance', () => {
   it('it should return error message', (done) => {
     chai.request(app)
       .get(`/users/10200/total-balance`)
+      .end((err, res) => {
+        assert.equal(res.status, 404);
+        assert.notEqual(res.body, null);
+        assert.equal(res.body["message"], `Invalid input - User id 10200 is not found`);
+      });
+    done();
+  });
+})
+
+// E2ETest - Check if we receive an error message if the user id is invalid 
+describe('/GET user balances', () => {
+  it('it should return error message', (done) => {
+    chai.request(app)
+      .get(`/users/10200/balances`)
       .end((err, res) => {
         assert.equal(res.status, 404);
         assert.notEqual(res.body, null);

@@ -30,19 +30,19 @@ function App() {
     e.preventDefault();
 
     let totalBalanceResponse = await fetchAPI(`${userId.current.value}/total-balance`);
-    let userBalances = await fetchAPI(`${userId.current.value}/balances`);
+    let userBalancesResponse = await fetchAPI(`${userId.current.value}/balances`);
 
-    if (totalBalanceResponse === undefined || userBalances === undefined) {
+    if (totalBalanceResponse === undefined || userBalancesResponse === undefined) {
       setErrorModalShow(true);
 
     } else {
       setTotalBalance(totalBalanceResponse[userId.current.value]);
 
-      if (userBalances["BTC"] !== undefined) {
-        setBtcBalance(userBalances["BTC"]);
+      if (userBalancesResponse["BTC"] !== undefined) {
+        setBtcBalance(userBalancesResponse["BTC"]);
       }
-      if (userBalances["ETH"] !== undefined) {
-        setEthBalance(userBalances["ETH"]);
+      if (userBalancesResponse["ETH"] !== undefined) {
+        setEthBalance(userBalancesResponse["ETH"]);
       }
       setBalanceModalShow(true);
     }
