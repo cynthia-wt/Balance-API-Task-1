@@ -4,7 +4,7 @@ import { Modal, Button, ListGroup } from "react-bootstrap";
 function ResultModal(props) {
 
     return (
-        <Modal style={{ opacity: 1, marginTop: 400, paddingTop: 30 }}
+        <Modal style={{ opacity: 1, marginTop: 400, paddingTop: 50 }}
             backdrop="static"
             keyboard={false}
             {...props}
