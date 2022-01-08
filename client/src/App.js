@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import logo from './logo.gif';
 import './App.css';
 import { Form, FormControl } from "react-bootstrap";
 import React, { useState, useRef } from "react";
@@ -36,7 +36,9 @@ function App() {
     <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>
+          <link rel="preconnect" href="https://fonts.gstatic.com"></link>
+          <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet"></link>
+          <p style = {{fontSize: 20, marginTop: 5}}>
             Enter your preference here:
           </p>
           <Form onSubmit={handleSubmit}>
